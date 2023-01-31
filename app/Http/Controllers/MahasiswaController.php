@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dosen;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class DosenController extends Controller
+class MahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,9 @@ class DosenController extends Controller
      */
     public function index()
     {
-        $data = Dosen::all();
-        return view('dashboard.dosen.index', [
+        $data = Mahasiswa::all();
+
+        return view('dashboard.mahasiswa.index', [
             "data" => $data,
         ]);
     }
@@ -28,7 +29,7 @@ class DosenController extends Controller
      */
     public function create()
     {
-        return view("dashboard.dosen.create");
+        return view('dashboard.mahasiswa.create');
     }
 
     /**
@@ -40,27 +41,27 @@ class DosenController extends Controller
     public function store(Request $request)
     {
         $validasi = $request->validate([
-            "nama_dosen" => 'required|string',
+            "nama_mahasiswa" => 'required|string',
             "jenis_kelamin" => 'required|string',
             'alamat' => 'required|string',
             'nomor_telepon' => 'required|numeric',
-            'email' => 'required|email:rfc,dns'
+            'agama' => 'required|string'
         ]);
 
         $validasi['slug'] = Str::slug($request->nama_dosen, '-');
 
-        Dosen::create($validasi);
+        Mahasiswa::create($validasi);
 
-        return redirect('/dashboard/dosen')->with('create-success', 'berhasil menambahkan dosen ' . $request->nama_dosen);
+        return redirect('/dashboard/mahasiswa')->with('executed-query', 'berhasil menambahkan mahasiswa ' . $request->nama_dosen);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Mahasiswa $mahasiswa)
     {
         //
     }
@@ -68,15 +69,15 @@ class DosenController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $data = Dosen::find($id)->first();
+        $mhs = Mahasiswa::find($id)->first();
 
-        return view('dashboard.dosen.update', [
-            "data" => $data,
+        return view('dashboard.mahasiswa.update', [
+            "data" => $mhs,
         ]);
     }
 
@@ -84,35 +85,35 @@ class DosenController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $validasi = $request->validate([
-            "nama_dosen" => 'required|string',
+        $data = $request->validate([
+            "nama_mahasiswa" => 'required|string',
             "jenis_kelamin" => 'required|string',
             'alamat' => 'required|string',
             'nomor_telepon' => 'required|numeric',
-            'email' => 'required|email:rfc,dns'
+            'agama' => 'required|string'
         ]);
 
-        $validasi['slug'] = Str::slug($request->nama_dosen, '-');
+        $data['slug'] = Str::slug($request->nama_mahasiswa, '-');
 
-        Dosen::where('id', $id)->update($validasi);
+        Mahasiswa::where('id', $id)->update($data);
 
-        return redirect('/dashboard/dosen')->with('create-success', 'berhasil mengubah data');
+        return redirect('/dashboard/mahasiswa')->with('executed-query', 'berhasil mengubah data');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Dosen::destroy($id);
-        return redirect('/dashboard/dosen')->with('create-success', 'berhasi menghapus data');
+        Mahasiswa::destroy($id);
+        return redirect('/dashboard/mahasiswa')->with('executed-query', 'berhasi menghapus data');
     }
 }

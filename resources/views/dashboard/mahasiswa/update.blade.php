@@ -3,15 +3,15 @@
     <div class="card-body" style="margin-top: -4em">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Update Dosen</h3>
+                <h3 class="card-title">Update mahasiswa</h3>
             </div>
-            <form method="POST" action="/dashboard/dosen/edit/{{ $data->id }}" enctype="multipart/form-data">
+            <form method="POST" action="/dashboard/mahasiswa/edit/{{ $data->id }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card-body">
                 <div class="form-group">
                     <label for="nama">Nama</label>
-                    <input type="text" value="{{ $data->nama_dosen }}" class="form-control @error ('nama') is-invalid @enderror" id="nama" name="nama_dosen" placeholder="Nama Dosen">
+                    <input type="text" value="{{ $data->nama_mahasiswa }}" class="form-control @error ('nama') is-invalid @enderror" id="nama" name="nama_mahasiswa" placeholder="Nama mahasiswa">
                     @error('nama')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label for="nomor-telepon">Nomor Telepon</label>
-                    <input value="{{ $data->nomor_telepon }}" type="text" class="form-control @error ('nomor-telepon') is-invalid @enderror" id="nomor-telepon" name="nomor_telepon" placeholder="Nomor Telepon Dosen">
+                    <input value="{{ $data->nomor_telepon }}" type="text" class="form-control @error ('nomor-telepon') is-invalid @enderror" id="nomor-telepon" name="nomor_telepon" placeholder="Nomor Telepon mahasiswa">
                     @error('nomor-telepon')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -44,9 +44,9 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input value="{{ $data->email }}" type="email" class="form-control @error ('email') is-invalid @enderror" id="email" name="email" placeholder="Email Dosen">
-                    @error('email')
+                    <label for="agama">Agama</label>
+                    <input value="{{ $data->agama }}" type="agama" class="form-control @error ('agama') is-invalid @enderror" id="agama" name="agama" placeholder="agama mahasiswa">
+                    @error('agama')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

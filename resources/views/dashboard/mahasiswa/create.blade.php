@@ -3,14 +3,14 @@
     <div class="card-body" style="margin-top: -4em">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Tambah Dosen</h3>
+                <h3 class="card-title">Tambah Mahasiswa</h3>
             </div>
-            <form method="POST" action="/dashboard/dosen/post" enctype="multipart/form-data">
+            <form method="POST" action="/dashboard/mahasiswa/post" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group">
                     <label for="nama">Nama</label>
-                    <input type="text" class="form-control @error ('nama') is-invalid @enderror" id="nama" name="nama_dosen" placeholder="Nama Dosen">
+                    <input type="text" class="form-control @error ('nama') is-invalid @enderror" id="nama" name="nama_mahasiswa" placeholder="Nama Mahasiswa">
                     @error('nama')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <label for="nomor-telepon">Nomor Telepon</label>
-                    <input type="text" class="form-control @error ('nomor-telepon') is-invalid @enderror" id="nomor-telepon" name="nomor_telepon" placeholder="Nomor Telepon Dosen">
+                    <input type="text" class="form-control @error ('nomor-telepon') is-invalid @enderror" id="nomor-telepon" name="nomor_telepon" placeholder="Nomor Telepon Mahasiswa">
                     @error('nomor-telepon')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -43,9 +43,9 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control @error ('email') is-invalid @enderror" id="email" name="email" placeholder="Email Dosen">
-                    @error('email')
+                    <label for="agama">Agama</label>
+                    <input type="agama" class="form-control @error ('agama') is-invalid @enderror" id="agama" name="agama" placeholder="agama Mahasiswa">
+                    @error('agama')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
